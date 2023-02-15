@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Update department</title>
+    </h:head>
+    <h:body>
+        <f:metadata>
+            <f:viewParam name="code" value="#{departmentBean.code}"/>
+            <f:viewAction action="#{departmentBean.load}" />
+        </f:metadata>
+
+        <h:messages style="color: red"/>
+        <h:form>
+        <h:panelGrid columns="2">
+            <h:outputText value="Code" />
+            <h:inputText value="#{departmentBean.code}" required="true" />
+
+            <h:outputText value="Name" />
+            <h:inputText value="#{departmentBean.name}" 
+                         required="true" 
+                         requiredMessage="Name is mandatory" 
+                         validatorMessage="Code must be at most 50 chars long">
+                <f:validateLength maximum="50" />
+            </h:inputText>            
+        </h:panelGrid>
+        <h:panelGrid columns="3">
+            <h:commandLink value="Save" action="#{departmentBean.update}" />
+            <h:commandLink value="Delete" action="#{departmentBean.delete}" />
+            <h:link value="Back" outcome="index" />
+        </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
